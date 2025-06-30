@@ -8,7 +8,7 @@
 0. Introduction
 1. Fundamentals
 2. Kubernetes
-3. AWS
+3. [AWS](content/03-aws.md)
 4. Azure
 5. GCP
 6. GitHub
