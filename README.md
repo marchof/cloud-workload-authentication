@@ -17,5 +17,6 @@
 
 ## License
 
+This content is licensed under [Creative Commons Attribution-ShareAlike 4.0](LICENSE).
 
-
+All product names may be trademarks of their respective owners.
