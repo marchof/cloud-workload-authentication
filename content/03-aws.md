@@ -47,3 +47,13 @@ Requests to AWS platform APIs are authenticated using the AWS Signature Version 
 This approach ensures that only workloads with valid, authorized credentials can interact with AWS platform APIs, and all actions are auditable via AWS CloudTrail.
 
 ## Local Development
+
+When developing locally, workloads do not have access to AWS-managed IAM roles or the Instance Metadata Service. Instead, developers should use one of the following best practices to authorize local workloads:
+
+- **AWS CLI Configuration:** Use the AWS CLI (`aws configure`) to set up access keys and secret keys in the `~/.aws/credentials` file. The AWS SDKs and CLI will automatically use these credentials for API requests.
+- **Environment Variables:** Set the `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and (if needed) `AWS_SESSION_TOKEN` environment variables in your development environment. This is useful for temporary credentials, such as those obtained via AWS SSO or STS.
+- **AWS SSO (IAM Identity Center):** Use AWS IAM Identity Center (formerly AWS SSO) to obtain temporary credentials for development. Run `aws sso login` to authenticate, and the SDKs will use the SSO profile for API requests.
+- **Assume Role:** Use the AWS CLI or SDKs to assume a role with limited permissions for development, rather than using long-lived credentials. This can be done with `aws sts assume-role` and exporting the resulting credentials as environment variables.
+- **.env Files and Secret Management:** Never hard-code credentials in source code. Use environment variable files (`.env`) or secret management tools to inject credentials securely during development.
+
+Always follow the principle of least privilege and avoid using production credentials for local development. Regularly rotate credentials and audit their usage to minimize risk.

@@ -45,3 +45,12 @@ Requests to Azure platform APIs are authenticated using OAuth 2.0 access tokens 
 This approach ensures that only workloads with valid, authorized identities can interact with Azure platform APIs, and all actions are auditable via Azure Activity Log.
 
 ## Local Development
+
+When developing locally, workloads do not have access to Azure-managed identities or the Instance Metadata Service. Instead, developers should use one of the following best practices to authorize local workloads:
+
+- **Azure CLI Authentication:** Use the Azure CLI (`az login`) to authenticate with your Azure account. The Azure SDKs and CLI will automatically use this authentication context for API requests.
+- **Environment Variables:** Set the `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, and `AZURE_CLIENT_SECRET` environment variables to use a service principal for local development. This is useful for automation and CI/CD scenarios.
+- **Managed Identity Emulation:** Use tools like Azure Identity SDK's `DefaultAzureCredential`, which will try multiple authentication methods (including Azure CLI, environment variables, and managed identity if available).
+- **.env Files and Secret Management:** Never hard-code credentials in source code. Use environment variable files (`.env`) or secret management tools to inject credentials securely during development.
+
+Always follow the principle of least privilege and avoid using production credentials for local development. Regularly rotate credentials and audit their usage to minimize risk.

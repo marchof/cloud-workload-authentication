@@ -46,3 +46,12 @@ Requests to GCP platform APIs are authenticated using OAuth 2.0 access tokens or
 This approach ensures that only workloads with valid, authorized identities can interact with GCP platform APIs, and all actions are auditable via Cloud Audit Logs.
 
 ## Local Development
+
+When developing locally, workloads do not have access to GCP-managed service accounts or the metadata server. Instead, developers should use one of the following best practices to authorize local workloads:
+
+- **gcloud CLI Authentication:** Use the Google Cloud CLI (`gcloud auth application-default login`) to authenticate with your Google account. The Google Cloud SDKs and client libraries will automatically use these credentials for API requests.
+- **Service Account Keys:** Download a service account key in JSON format from the Google Cloud Console and set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to point to this file. This allows the SDKs to use the service account for authentication.
+- **Environment Variables and Secret Management:** Never hard-code credentials in source code. Use environment variable files (`.env`) or secret management tools to inject credentials securely during development.
+- **IAM Roles:** Use service accounts with least-privilege IAM roles for development, and avoid using production credentials.
+
+Always follow the principle of least privilege and avoid using production credentials for local development. Regularly rotate credentials and audit their usage to minimize risk.
