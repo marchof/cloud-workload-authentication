@@ -10,7 +10,7 @@
 2. Kubernetes
 3. [AWS](content/03-aws.md)
 4. Azure
-5. GCP
+5. [GCP](content/05-gcp.md)
 6. GitHub
 7. Interoperability
 
