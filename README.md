@@ -7,11 +7,11 @@
 
 0. Introduction
 1. Fundamentals
-2. Kubernetes
+2. [Kubernetes](content/02-kubernetes.md)
 3. [AWS](content/03-aws.md)
 4. [Azure](content/04-azure.md)
 5. [GCP](content/05-gcp.md)
-6. GitHub
+6. [GitHub](content/06-github.md)
 7. Interoperability
 
 
