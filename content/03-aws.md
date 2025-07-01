@@ -29,10 +29,21 @@ In AWS, permissions are assigned to workloads through IAM roles. Each workload (
 
 - **Role Assignment:** When launching a compute resource, you specify which IAM role it should assume. For example, an EC2 instance profile or a task role for ECS.
 - **Policy Attachment:** Permissions are not granted directly to the workload, but to the IAM role. IAM policies (managed or custom) are attached to the role, defining what AWS API actions are allowed on which resources.
-- **Effective Permissions:** When the workload uses its temporary credentials to access AWS APIs, the platform checks the policies attached to the assumed role and enforces the corresponding permissions.
+- **Effective Permissions:** When the workload uses its temporary credentials (obtained from the Instance Metadata Service, environment variables, or other supported mechanisms) to access AWS APIs, the platform checks the policies attached to the assumed role and enforces the corresponding permissions.
 
 This approach enables fine-grained, least-privilege access control and makes it easy to manage and audit permissions for workloads at scale.
 
 ## Authentication and Authorisation for Platform APIs
+
+Requests to AWS platform APIs are authenticated using the AWS Signature Version 4 (SigV4) signing process. This mechanism ensures that API requests are securely authenticated and authorized using the credentials available to the workload.
+
+- **Authentication:** When a workload needs to call an AWS API, it uses its credentials (access key, secret key, and session token) to sign the request. The signing process (SigV4) creates a cryptographic signature based on the request details and the secret key. This signature is included in the HTTP headers of the API request.
+- **Authorization:** When AWS receives the request, it validates the signature and checks the session token. If valid, AWS determines the identity (IAM role) making the request and evaluates the attached IAM policies to authorize the requested action.
+- **Technical Implementation:**
+    - The AWS SDKs and CLI handle the SigV4 signing process automatically.
+    - The signed request includes the `Authorization` header, `x-amz-date`, and (if using temporary credentials) the `x-amz-security-token` header.
+    - Example: The application uses the SDK to sign and send API requests, and AWS CloudTrail can be used to audit all actions.
+
+This approach ensures that only workloads with valid, authorized credentials can interact with AWS platform APIs, and all actions are auditable via AWS CloudTrail.
 
 ## Local Development

@@ -28,10 +28,21 @@ In GCP, permissions are assigned to workloads through service accounts. Each wor
 
 - **Service Account Assignment:** When deploying a workload, you specify which service account it should use. For example, a Compute Engine VM or a Cloud Run service can be configured to run as a particular service account.
 - **IAM Role Binding:** Permissions are not granted directly to the workload, but to the service account identity. IAM roles (such as Viewer, Editor, or custom roles) are bound to the service account at the project, folder, or resource level.
-- **Effective Permissions:** When the workload uses its service account credentials to access GCP APIs, the platform checks the roles assigned to that service account and enforces the corresponding permissions.
+- **Effective Permissions:** When the workload uses its service account credentials (obtained from the metadata server, environment variables, or other supported mechanisms) to access GCP APIs, the platform checks the roles assigned to that service account and enforces the corresponding permissions.
 
 This approach allows for fine-grained, least-privilege access control and makes it easy to audit and manage permissions for workloads at scale.
 
 ## Authentication and Authorisation for Platform APIs
+
+Requests to GCP platform APIs are authenticated using OAuth 2.0 access tokens or JWTs issued by Google Cloud IAM. This ensures that API requests are securely authenticated and authorized using the service account identity assigned to the workload.
+
+- **Authentication:** When a workload needs to call a GCP API, it uses its service account credentials to obtain an OAuth 2.0 access token or sign a JWT for the target API. The token or JWT is included in the `Authorization` header as a Bearer token in the API request.
+- **Authorization:** When GCP receives the request, it validates the token or JWT and determines the identity (service account) making the request. GCP then evaluates the IAM roles assigned to that identity to authorize the requested action.
+- **Technical Implementation:**
+    - The Google Cloud SDKs and client libraries handle token acquisition and request signing automatically.
+    - The access token or JWT is included in the `Authorization: Bearer <token>` header.
+    - Example: The application uses the metadata server endpoint (`http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token`) to obtain a token and then calls the GCP API with the token.
+
+This approach ensures that only workloads with valid, authorized identities can interact with GCP platform APIs, and all actions are auditable via Cloud Audit Logs.
 
 ## Local Development

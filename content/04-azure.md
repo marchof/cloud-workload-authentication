@@ -33,4 +33,15 @@ This approach enables fine-grained, least-privilege access control and simplifie
 
 ## Authentication and Authorisation for Platform APIs
 
+Requests to Azure platform APIs are authenticated using OAuth 2.0 access tokens issued by Azure Active Directory (Azure AD, now Microsoft Entra ID). This ensures that API requests are securely authenticated and authorized using the identity assigned to the workload.
+
+- **Authentication:** When a workload needs to call an Azure API, it uses its Managed Identity to request an OAuth 2.0 access token from Azure AD for the target resource (API). The token is included in the `Authorization` header as a Bearer token in the API request.
+- **Authorization:** When Azure receives the request, it validates the access token and determines the identity (Managed Identity) making the request. Azure then evaluates the RBAC roles assigned to that identity to authorize the requested action.
+- **Technical Implementation:**
+    - The Azure SDKs and CLI handle token acquisition and request signing automatically.
+    - The access token is included in the `Authorization: Bearer <token>` header.
+    - Example: The application uses the Azure SDK to obtain a token via the Instance Metadata Service endpoint (`http://169.254.169.254/metadata/identity/oauth2/token`) and then calls the Azure API with the token.
+
+This approach ensures that only workloads with valid, authorized identities can interact with Azure platform APIs, and all actions are auditable via Azure Activity Log.
+
 ## Local Development
