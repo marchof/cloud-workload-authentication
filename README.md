@@ -1,6 +1,6 @@
 # Cloud Workload Authentication - Principles and Practice
 
-> _Never again manage secrets_
+**_No More Secrets: Secure Identities for your Code_**
 
 
 ## Content
