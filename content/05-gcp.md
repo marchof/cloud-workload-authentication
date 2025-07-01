@@ -55,3 +55,17 @@ When developing locally, workloads do not have access to GCP-managed service acc
 - **IAM Roles:** Use service accounts with least-privilege IAM roles for development, and avoid using production credentials.
 
 Always follow the principle of least privilege and avoid using production credentials for local development. Regularly rotate credentials and audit their usage to minimize risk.
+
+## Federation with External Identity Providers
+
+GCP supports federation with external identity providers using Workload Identity Federation. You can configure an external OIDC or SAML provider in IAM, and map external identities to GCP service accounts using attribute mapping. Permissions are managed via IAM roles.
+
+- **Tools:**
+    - Workload Identity Pools and Providers
+    - Service Account IAM Policy Bindings
+- **Configuration:**
+    - Create a Workload Identity Pool and Provider in IAM
+    - Map external IdP claims to GCP service accounts using attribute mapping
+    - Grant IAM roles to the service account
+- **References:**
+    - https://cloud.google.com/iam/docs/workload-identity-federation

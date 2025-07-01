@@ -50,3 +50,16 @@ When developing locally, workloads and users can authenticate to a Kubernetes cl
 - **Least Privilege:** Always use the minimum permissions required for development and avoid using cluster-admin roles.
 
 Always secure kubeconfig files and avoid sharing credentials. Regularly review and rotate credentials as needed.
+
+## Federation with External Identity Providers
+
+Kubernetes supports federation with external identity providers using OpenID Connect (OIDC). The API server can be configured with the `--oidc-*` flags to trust an external OIDC provider (such as AWS, Azure AD, GCP, or GitHub). External identities are mapped to Kubernetes users or service accounts, and their permissions are managed using RBAC.
+
+- **Tools:**
+    - API server OIDC flags (`--oidc-issuer-url`, `--oidc-client-id`, etc.)
+    - RBAC for mapping external identities to roles
+- **Configuration:**
+    - Configure the API server to trust the external OIDC provider
+    - Use RBAC role bindings to assign permissions to external identities (by subject or group claim)
+- **References:**
+    - https://kubernetes.io/docs/reference/access-authn-authz/authentication/#openid-connect-tokens

@@ -46,3 +46,17 @@ For local development and testing of GitHub Actions workflows:
 - **Environment Variables:** Set required secrets and tokens as environment variables when running workflows locally.
 
 Never commit secrets or tokens to source code. Use the principle of least privilege and regularly rotate tokens and secrets.
+
+## Federation with External Identity Providers
+
+GitHub Actions supports federated authentication to cloud platforms using OIDC. Workflows can request OIDC tokens from GitHub's OIDC provider, which can be trusted by AWS, Azure, GCP, or Kubernetes. The cloud platform maps the OIDC claims to internal roles or service accounts.
+
+- **Tools:**
+    - GitHub OIDC Provider
+    - Cloud platform trust configuration (AWS IAM, Azure AD, GCP Workload Identity, Kubernetes OIDC)
+- **Configuration:**
+    - Configure the cloud platform to trust GitHub's OIDC provider
+    - Map OIDC claims (e.g., `sub`, `aud`, `repository`) to roles or service accounts
+    - Assign permissions to the mapped identity in the cloud platform
+- **References:**
+    - https://docs.github.com/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect

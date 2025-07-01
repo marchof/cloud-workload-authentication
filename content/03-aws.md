@@ -57,3 +57,18 @@ When developing locally, workloads do not have access to AWS-managed IAM roles o
 - **.env Files and Secret Management:** Never hard-code credentials in source code. Use environment variable files (`.env`) or secret management tools to inject credentials securely during development.
 
 Always follow the principle of least privilege and avoid using production credentials for local development. Regularly rotate credentials and audit their usage to minimize risk.
+
+## Federation with External Identity Providers
+
+AWS supports federation with external identity providers using OIDC and SAML. You can configure an IAM identity provider and create IAM roles with trust policies that allow external identities to assume roles via AWS STS. Role mapping is done using conditions on OIDC/SAML claims.
+
+- **Tools:**
+    - IAM Identity Providers (OIDC/SAML)
+    - IAM Roles and Trust Policies
+    - AWS STS (Security Token Service)
+- **Configuration:**
+    - Register the external IdP in IAM
+    - Create a role with a trust policy referencing the IdP and mapping claims to role assumption
+    - Use IAM policy conditions to restrict access based on claims (e.g., `sub`, `aud`, `iss`)
+- **References:**
+    - https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers.html

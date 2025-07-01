@@ -54,3 +54,18 @@ When developing locally, workloads do not have access to Azure-managed identitie
 - **.env Files and Secret Management:** Never hard-code credentials in source code. Use environment variable files (`.env`) or secret management tools to inject credentials securely during development.
 
 Always follow the principle of least privilege and avoid using production credentials for local development. Regularly rotate credentials and audit their usage to minimize risk.
+
+## Federation with External Identity Providers
+
+Azure supports federation with external identity providers using Azure AD Workload Identity Federation. You can configure Azure AD to trust external OIDC providers and map external identities to Azure AD app registrations or service principals. Role assignments are managed using Azure RBAC.
+
+- **Tools:**
+    - Azure AD App Registrations
+    - Federated Credentials (OIDC)
+    - Azure RBAC
+- **Configuration:**
+    - Register an app in Azure AD and configure federated credentials
+    - Map external claims (e.g., `sub`, `aud`, `iss`) to Azure AD identities
+    - Assign roles to the app/service principal using Azure RBAC
+- **References:**
+    - https://learn.microsoft.com/azure/active-directory/develop/workload-identity-federation
