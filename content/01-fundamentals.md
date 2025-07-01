@@ -30,6 +30,19 @@ The practice of granting workloads only the permissions they need to perform the
 A security model that assumes no implicit trust, requiring continuous verification of identity and permissions for every request. Zero Trust minimizes the risk of lateral movement and privilege escalation within a system.
 
 
+## Standards and Protocols
+
+Below is a list of key standards and protocols referenced throughout this repository, with short descriptions and links to their official definitions:
+
+- **OpenID Connect (OIDC):** An identity layer on top of OAuth 2.0 for federated authentication, widely used for workload identity federation. [OIDC Standard](https://openid.net/connect/)
+- **OAuth 2.0:** An authorization framework that enables applications to obtain limited access to user accounts on an HTTP service. [OAuth 2.0 RFC 6749](https://datatracker.ietf.org/doc/html/rfc6749)
+- **SAML 2.0:** Security Assertion Markup Language, a standard for exchanging authentication and authorization data between parties, commonly used for enterprise federation. [SAML 2.0 Standard](https://docs.oasis-open.org/security/saml/v2.0/)
+- **X.509 Certificates:** A standard defining the format of public key certificates, used for mutual TLS and other authentication scenarios. [X.509 Standard](https://www.itu.int/rec/T-REC-X.509/en)
+- **Mutual TLS (mTLS):** A protocol where both client and server authenticate each other using X.509 certificates. [mTLS Overview](https://datatracker.ietf.org/doc/html/rfc8705)
+- **JSON Web Token (JWT):** A compact, URL-safe means of representing claims to be transferred between two parties, used in OIDC, OAuth, and cloud identity federation. [JWT RFC 7519](https://datatracker.ietf.org/doc/html/rfc7519)
+- **Role-Based Access Control (RBAC):** An approach to restricting system access to authorized users based on roles. [NIST RBAC Standard](https://csrc.nist.gov/projects/role-based-access-control)
+- **Security Token Service (STS):** A protocol/service for issuing, validating, and exchanging security tokens (e.g., AWS STS, Azure AD, GCP IAM). [WS-Trust STS](https://docs.oasis-open.org/ws-sx/ws-trust/v1.4/ws-trust.html)
+
 ## Common Authentication Mechanisms
 
 - **Service Accounts:** Platform-managed identities for workloads (e.g., Kubernetes service accounts, GCP service accounts).
