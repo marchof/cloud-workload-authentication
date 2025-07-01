@@ -6,7 +6,7 @@ Here’s a list of the most important GCP services capable of executing workload
 
 | Service                                                 | Execution Type                 |
 | ------------------------------------------------------- | ------------------------------ |
-| [Compute Engine](https://cloud.google.com/compute/)     | VM-based                       |
+| [Compute Engine](https://cloud.google.com/compute/)     | Virtual servers                |
 | [App Engine](https://cloud.google.com/appengine/)       | PaaS for web apps              |
 | [GKE](https://cloud.google.com/kubernetes-engine/)      | Container orchestration (K8s)  |
 | [Cloud Run](https://cloud.google.com/run/)              | Serverless containers          |
