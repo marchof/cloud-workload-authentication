@@ -23,7 +23,15 @@ AWS uses a centralized identity and access management system called AWS Identity
 
 This model allows workloads to securely access AWS services and APIs without managing long-term secrets or credentials directly.
 
-## Workloads Identity
+## Workloads Identity and Permissions
+
+In AWS, permissions are assigned to workloads through IAM roles. Each workload (such as an EC2 instance, ECS task, Lambda function, or EKS pod) can be configured to assume a specific IAM role. The IAM role acts as the identity of the workload and determines its permissions.
+
+- **Role Assignment:** When launching a compute resource, you specify which IAM role it should assume. For example, an EC2 instance profile or a task role for ECS.
+- **Policy Attachment:** Permissions are not granted directly to the workload, but to the IAM role. IAM policies (managed or custom) are attached to the role, defining what AWS API actions are allowed on which resources.
+- **Effective Permissions:** When the workload uses its temporary credentials to access AWS APIs, the platform checks the policies attached to the assumed role and enforces the corresponding permissions.
+
+This approach enables fine-grained, least-privilege access control and makes it easy to manage and audit permissions for workloads at scale.
 
 ## Authentication and Authorisation for Platform APIs
 

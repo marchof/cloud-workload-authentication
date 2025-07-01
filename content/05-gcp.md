@@ -22,7 +22,15 @@ GCP uses a unified identity and access management system called Google Cloud IAM
 
 This model allows workloads to securely access GCP services and APIs without managing long-term secrets or credentials directly.
 
-## Workloads Identity
+## Workloads Identity and Permissions
+
+In GCP, permissions are assigned to workloads through service accounts. Each workload (such as a VM, container, or function) can be configured to run as a specific service account. IAM roles are then granted to that service account, defining what actions it can perform on which resources.
+
+- **Service Account Assignment:** When deploying a workload, you specify which service account it should use. For example, a Compute Engine VM or a Cloud Run service can be configured to run as a particular service account.
+- **IAM Role Binding:** Permissions are not granted directly to the workload, but to the service account identity. IAM roles (such as Viewer, Editor, or custom roles) are bound to the service account at the project, folder, or resource level.
+- **Effective Permissions:** When the workload uses its service account credentials to access GCP APIs, the platform checks the roles assigned to that service account and enforces the corresponding permissions.
+
+This approach allows for fine-grained, least-privilege access control and makes it easy to audit and manage permissions for workloads at scale.
 
 ## Authentication and Authorisation for Platform APIs
 

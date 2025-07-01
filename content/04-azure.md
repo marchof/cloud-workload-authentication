@@ -21,7 +21,15 @@ Azure uses a centralized identity and access management system based on Azure Ac
 
 This model allows workloads to securely access Azure services and APIs without managing secrets or credentials directly.
 
-## Workloads Identity
+## Workloads Identity and Permissions
+
+In Azure, permissions are assigned to workloads through Managed Identities. Each workload (such as a Virtual Machine, App Service, Function, or AKS pod) can be configured to use a system-assigned or user-assigned Managed Identity. The Managed Identity acts as the identity of the workload and determines its permissions.
+
+- **Managed Identity Assignment:** When deploying a resource, you enable a Managed Identity for it. For example, you can enable a system-assigned identity for a VM or assign a user-assigned identity to an App Service or AKS pod.
+- **Role Assignment (RBAC):** Permissions are not granted directly to the workload, but to the Managed Identity. Azure RBAC roles (such as Reader, Contributor, or custom roles) are assigned to the Managed Identity at the subscription, resource group, or resource level.
+- **Effective Permissions:** When the workload uses its Managed Identity to request an access token and access Azure APIs, the platform checks the roles assigned to that identity and enforces the corresponding permissions.
+
+This approach enables fine-grained, least-privilege access control and simplifies management and auditing of permissions for workloads at scale.
 
 ## Authentication and Authorisation for Platform APIs
 
