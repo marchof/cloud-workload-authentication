@@ -12,7 +12,7 @@
 4. [Azure](content/04-azure.md)
 5. [GCP](content/05-gcp.md)
 6. [GitHub](content/06-github.md)
-7. Interoperability
+7. [Interoperability](content/07-interoperability.md)
 
 
 ## License
