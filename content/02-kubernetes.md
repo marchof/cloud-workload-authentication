@@ -63,3 +63,19 @@ Kubernetes supports federation with external identity providers using OpenID Con
     - Use RBAC role bindings to assign permissions to external identities (by subject or group claim)
 - **References:**
     - https://kubernetes.io/docs/reference/access-authn-authz/authentication/#openid-connect-tokens
+
+## OpenShift: Differences from Plain Kubernetes
+
+OpenShift is an enterprise Kubernetes distribution by Red Hat that extends upstream Kubernetes with additional features, security controls, and opinionated defaults. Here are some key differences relevant to workload authentication and identity:
+
+- **Integrated OAuth Server:** OpenShift includes a built-in OAuth server for user authentication, supporting multiple identity providers (LDAP, GitHub, OIDC, etc.).
+- **Service Account Tokens:** Like Kubernetes, OpenShift uses service accounts for workload identity, but adds stricter defaults and additional controls for token management and rotation.
+- **RBAC and SCCs:** OpenShift enforces Role-Based Access Control (RBAC) and introduces Security Context Constraints (SCCs) for fine-grained workload security.
+- **User and Group Management:** OpenShift provides enhanced user and group management, including mapping external identities to OpenShift users and groups.
+- **OAuth Proxy and Service Mesh:** OpenShift Service Mesh and OAuth Proxy can be used to secure workload-to-workload and ingress traffic with integrated authentication.
+- **Console and CLI Integration:** The OpenShift web console and `oc` CLI provide integrated authentication and authorization flows, leveraging the platform's OAuth server.
+
+**References:**
+- [OpenShift Authentication Overview](https://docs.openshift.com/container-platform/latest/authentication/index.html)
+- [Security Context Constraints](https://docs.openshift.com/container-platform/latest/authentication/managing-security-context-constraints.html)
+- [OpenShift Service Mesh](https://docs.openshift.com/container-platform/latest/service_mesh/index.html)
