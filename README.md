@@ -2,6 +2,7 @@
 
 **_No More Secrets: Secure Identities for your Code_**
 
+This repository documents principles, patterns, and platform-specific methods for authenticating workloads in cloud environments — without relying on static secrets. It also covers interoperability between platforms.
 
 ## Content
 
