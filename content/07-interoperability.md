@@ -1,4 +1,4 @@
-# Interoperability: Cross-Platform Workload Authentication
+# 7. Interoperability: Cross-Platform Workload Authentication
 
 ## Introduction
 

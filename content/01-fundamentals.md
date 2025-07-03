@@ -1,4 +1,4 @@
-# Fundamentals 
+# 1. Fundamentals 
 
 ## Key Concepts and Terms
 

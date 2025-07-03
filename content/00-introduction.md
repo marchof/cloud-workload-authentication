@@ -1,4 +1,4 @@
-# Introduction
+# 0. Introduction
 
 Cloud workload authentication is a foundational aspect of modern cloud security. As organizations move to cloud-native architectures, workloads—such as applications, containers, serverless functions, and automation scripts—must securely access APIs, data, and other resources. Unlike traditional user authentication, workload authentication is automated, must scale to thousands of instances, and must be robust against credential theft and misuse.
 

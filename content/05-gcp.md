@@ -1,4 +1,4 @@
-# Google Cloud Platform (GCP)
+# 5. GCP
 
 ## Introduction
 

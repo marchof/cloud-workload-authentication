@@ -1,4 +1,4 @@
-# GitHub Actions
+# 6. GitHub
 
 ## Introduction
 
